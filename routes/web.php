@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('form_send');
 });
+
+Route::post('/send', [PhotosController::class, 'send'])->name('send-photo');
+Route::get('/home', [PhotosController::class, 'index'])->name('home');
+Route::get('/download/{file}', [PhotosController::class, 'download'])->name('download');
+Route::get('/home/preview', [PhotosController::class, 'preview'])->name('preview');
+Route::get('/form', [PhotosController::class, 'form'])->name('form');
